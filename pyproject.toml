@@ -1,0 +1,27 @@
+[project]
+name = "google-flights-mcp"
+version = "0.1.0"
+description = "MCP server for searching Google Flights: prices, schedules, multi-city trips and flexible dates."
+readme = "README.md"
+license = "MIT"
+keywords = ["mcp", "google-flights", "flights", "travel", "model-context-protocol"]
+requires-python = ">=3.10"
+dependencies = [
+    "fast-flights>=3.1.0",
+    "mcp[cli]>=1.20",
+]
+
+[project.scripts]
+google-flights-mcp = "google_flights_mcp.server:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio>=0.24"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+markers = ["live: hits the real Google Flights site"]
+
+[build-system]
+requires = ["uv_build>=0.11.32,<0.12.0"]
+build-backend = "uv_build"
